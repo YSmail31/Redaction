@@ -1,0 +1,132 @@
+\documentclass[french]{book}
+\usepackage[french,onelanguage]{algorithm2e}
+\usepackage[french]{babel}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage{lmodern}
+\usepackage[a4paper]{geometry}
+\usepackage{babel}
+\usepackage{amssymb}
+\usepackage{amsmath}
+\usepackage{array}
+\usepackage{rtsched}
+\selectlanguage{french}
+\usepackage{setspace}
+\usepackage{tikz}
+\usepackage{libertine}
+\setlength{\parindent}{0cm}
+\setlength{\parskip}{1ex plus 0.5ex minus 0.2ex}
+\newcommand{\hsp}{\hspace{20pt}}
+\newcommand{\HRule}{\rule{\linewidth}{0.5mm}}
+\newcommand{\LRule}{\rule{\linewidth}{0.1mm}}
+\usetikzlibrary{arrows,backgrounds,snakes}
+\begin{document}
+\include{pageGarde}
+\let\cleardoublepage\clearpage
+\tableofcontents
+\listoffigures  % table des figures
+\listoftables   % table des tableaux
+%\let\cleardoublepage\clearpage
+\chapter{}
+\section{Introduction}
+\paragraph{}
+Dans un système, un processeur exécute un nombre bien défini de tâches ce qui consomme de l’énergie et les ordonnance de tel façon qu'elles respecte leurs échéances.
+Notre but est d'assurer ces deux contraintes ; moins consommer l’énergie  tout en gardant l’odonnançabilité de l'ensemble de taches en appliquant des algorithmes appropriés qui nous aident à conclurent notre travail.\paragraph{}
+Dans ce chapitre nous détaillons différents points : nous commençons par la terminologie d’une tâche avec quelques notations, ainsi que les modes de consommation d’énergie, nous définissons ensuite ce qu’est une période harmonique et ce qu’est un ordonnancement par un Deadline Monotonic (DM).Nous présentons par la suite deux algorithmes de génération d'ensemble de tache et d’insertion d’une tâche d'endormissement, et nous terminons par une expérimentation.
+\section{Notations et terminologie}
+\paragraph{}
+Soit un ensemble de taches périodique \{$\tau_{1},\tau_{2},. . . \tau_{n}$\} comprenant n taches périodiques. Chacune avec un pire temps d’exécution $C_{i}$, une période $T_{i}$ et une échéance $D_{i} \leq T_{i}$, l’ensemble de taches est ordonnées tel que $T_{1} \leq T_{2} \leq \ldots \leq T_{n}$.\\
+\paragraph{}
+On considère  que toutes les taches ont un temps d’arrivé initial $O_{i} = 0$ $i=1 .. n$ et nous adoptons un ordonnancement préemptif à priorité fixe par tache appelé deadline monotonic. Le taux d’utilisation d’une tache $ \tau_{i}$ est donné par $ U_{i} = C_{i}/ T_{i}$ et le taux d’utilisation total $ U_{tot} $ est donnée par $U_{tot} = \overset{n}{\underset{i=1}{\sum}} U_{i} $
+
+\section{Consommation d'énergie}
+\paragraph{}
+La plupart des processeurs modernes sont doté de mode de fonctionnement, chaque mode consomme une quantité d’énergie E. Le processeur a également besoin de plus ou moins de temps pour entrer ou sortir d’un mode TS.\\
+Par exemple un processeur a : 
+\\
+\\
+\\
+\begin{description}
+\item[Un mode actif] dans lequel le processeur consomme une grande une quantité d’énergie $E_{active}$ mais il peut exécuté des taches en attente d’être traiter.
+\item[Un mode repos] (sieste) où il consomme moins d’énergie $E_{idle}$ que le mode actif. Mais, aucun traitement ne peut se faire et un peu de temps $ST_{idle}$ doit être dépassé pour entrer ou sortir de ce mode.
+\item[Un mode sommeil] profond où il consomme le moins d’énergie $E_{sleep}$, mais aucun traitement ne peut se faire et une quantité considérable de temps doit être passé pour entrer ou sortir de ce mode.
+\end{description}
+\paragraph{}
+Nous présenterons une nouvelle technique efficace qui maximise le pourcentage de temps passé par un processeur en mode sommeil profond sans violer les contrainte temporelles de l’ensemble de taches. Dans ce fait cette technique utilise chaque unité de temps ou le processeur n’est pas en mode actif pour être passé en mode sommeil profond. Ainsi, le mode inactif peut être potentiellement éliminé avec une économie matérielle et une amélioration de la consommation d’énergie.
+\section{Période harmonique}
+\paragraph{}
+Soit $\Gamma$ = $\{\tau_{1},\tau_{2},. . . \tau_{n}\}$ un ensemble de $n$ taches. $\Gamma$ est harmonique si toute tache $\tau_{i} \in \Gamma - \{\tau{1}\} $ à une période $T_{i} = k_{i}T_{1} \text{ avec } k_{i} \in \mathbb{N}^*$ 
+\paragraph{}
+pour une efficacité d'ordonnancement on défini une période harmonique $T_{H}$ par : \\
+	$$T_{H}=\left\lbrace
+\begin{array}{ll}
+T_{1}/2&\text{si } \exists\ \tau_{j} \in \Gamma- \{\tau{1}\}\ tel\ que\ T_{j} < 2T_{1}
+\\
+ T_{1}&
+\text{sinon}
+\end{array}\right.$$
+
+\section{Ordonnancement par Deadline Monotonic}
+\paragraph{}
+Deadline monotonic (DM) est un algorithme d'ordonnancement à priorité fixe par tache, les priorités sont accordées au taches selon leurs écheances , la plus grande priorité est accordée à la tache de plus petites écheance.
+\paragraph{}
+Joseph et al ont proposé un test d’ordonnancabilité basé sur le pire temps de reponse $R_{i}$.
+Le pire temps de réponse est le moment ou la tache $i$ de priorité $p$ terminera son exécution quand les taches les plus prioritaire sont actifs avec elle en même temps.\\
+soit $\Gamma$ = $\tau_{1},\tau_{2},. . . \tau_{n}$ un ensemble de $n$ taches.
+$\Gamma$ est ordonnancable sous deadline monotonic ssi $\forall \tau_{i} \in \Gamma / R_{i} \leq D_{i}$
+\paragraph{}
+$R_{i} \text{ est donné par : }\\ $
+$$\left\lbrace
+\begin{array}{l}
+R_{i}^0=C_{i}
+\\
+ R_{i}^{(k+1)}=C_{i}+\overset{i-1}{\underset{j=1}{\sum}}  \left \lceil \dfrac{R_{i}^{(k)}}{T_{j}} \right \rceil * C_{j}  
+\end{array}\right.$$
+\\
+\\
+\paragraph{}
+pour illustrer l'ordonnancement sous deadline monotonic posons l'exemple donnée dans le tableau \ref{tab:exemple} :
+\begin{table}
+\begin{center}
+\begin{tabular}{|c|c|c|c|c|}
+\hline
+$\tau$ & $C_{i}$ & $D_{i}$ & $T_{i}$ & $R_{i}$ \\
+\hline
+1 & 5 & 9 & 10 & 9 \\
+2 & 4 & 7 & 15 & 4 \\
+3 & 6 & 15 & 30 & 29 \\
+\hline
+\end{tabular}
+\end{center}
+\caption{Ensemble de taches} \label{tab:exemple}
+\end{table}
+\\
+\begin{figure}
+\[
+\begin{RTGrid}[height=4cm,width=12cm,labelsize=8pt,numbersize=6,symbol=\tau]{3}{30}
+\multido{\n=0+10}{3}{
+\TaskArrDead{1}{\n}{9}}
+\TaskExecution{1}{4}{9}
+\TaskExecution{1}{10}{15}
+\TaskExecution{1}{20}{25}
+\multido{\n=0+15}{2}{
+\TaskArrDead{2}{\n}{7}}
+\TaskExecution{2}{0}{4}
+\TaskExecution{2}{15}{19}
+\multido{\n=0+30}{1}{
+\TaskArrDead{3}{\n}{15}}
+\TaskExecution{3}{9}{10}
+\TaskExecution{3}{19}{20}
+\TaskExecution{3}{25}{29}
+\end{RTGrid}\]
+\caption{Diagramme de Gantt} \label{fig:diagGantt}
+\end{figure}
+\paragraph{}
+En utilisant l’équation , on obtient le résultat de la colonne $R_{i}$ (voir le tableau \ref{tab:exemple}). on remarque que le pire temps de réponse de la tache $\tau_{3}$ est $29$ et il est supérieur à son écheance qui est de $15$. Donc, la tache n’est pas ordonnançable. Le diagramme de gantt (voir figure \ref{fig:diagGantt}) de la simulation confirme le fait.
+\begin{spacing}{1.2}
+\include{genTask}
+\include{sleepTask}
+\include{graphe}
+\end{spacing}
+
+\end{document}

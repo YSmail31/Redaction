@@ -1,0 +1,30 @@
+\section{Algorithme d'insertion de tache} 
+Posons une tâche d’endormissement $\tau_{sleep} =[C_{sleep},D_{sleep},T_{sleep}]$ tel que 
+	 
+	\begin{itemize}
+	\item $D_{sleep} = T_{sleep} = T_{H} (T_{H} defini precedemment )$
+	\item $C_{sleep} = max\{C\}$ tel que $\Gamma$ $\cup$ $T_{sleep}$ est ordonnançable par Deadline monotonic
+	\end{itemize}
+nous proposons cette algorithme qui génère une tache d'endormissement $T_{sleep}$ et pour une performance de temps nous  bornons $C_{sleep}$ de tel façon que : \\
+\[ C_{sleepMin} \leq C_{sleep} \leq C_{sleepMax} \]
+\begin{itemize}
+\item $C_{sleepMin}$ $\text{la somme des temps pour entrer et sortir du mode sommeil profond}$
+\item $C_{sleepMax}$  = $(1-U_{tot})T_{sleep}$
+\end{itemize}
+\begin{center}
+\begin{algorithm}[H]
+ \KwData{TaskSet $\Gamma$, Temps Minimum d'execution $C_{SleepMin}$, Temps d'execution Maximum $C_{SleepMax}$}
+ \KwResult{Tache $\tau_{Sleep}$}
+ \Begin{
+ 	$C_{Sleep}  \longleftarrow C_{SleepMax}$\;
+ 	$D_{Sleep}	\longleftarrow T_{H}$\;
+ 	$T_{sleep} \longleftarrow T_{H}$\;
+ 	\While{$\Gamma \cup tache(C_{Sleep},D_{Sleep},T_{H})$ est non  ordonnançable \textbf{et} $C_{Sleep} \geq C_{SleepMin}$}
+ 	{
+ 		$C_{Sleep} \longleftarrow C_{Sleep} - \Delta C$\;
+ 	}
+ 	$\tau_{Sleep} \longleftarrow CreerTache(C_{Sleep},D_{Sleep},T_{sleep})$
+ }
+ \caption{Insertion Taches Endormissement}
+\end{algorithm}
+\end{center}

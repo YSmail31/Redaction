@@ -1,0 +1,31 @@
+\section{Algorithme de génération de tache}
+%E. Bini and G. Buttazzo, “Measuring the performance of schedulability tests,” Real-Time Systems, vol. 30, no. 1-2, pp. 129–154, May 2005. 
+
+en 2005, Bini and Buttazzo [ref] ont crée un algorithme appelé UUnifast, il génère des taux d'utilisation de tache pour un ensemble de tache étant donnée un nombre de tache N et un taux d'utilisation total $U_{tot}$.
+En utilisant le principe de l'algorithme UUnifast on a abouti à un algorithme pour générer des taches .
+\begin{center}
+\begin{algorithm}[H]
+ \KwData{Taux Utilisation $U_{tot},$ Nombre de Taches N}
+ \KwResult{Ensemble de Taches $\Gamma$ \textbf{Ordonnançable}}
+ \While{$\Gamma$ non Ordonnaçable}{
+  $\Gamma \longleftarrow \emptyset$\;
+  $Sum \longleftarrow U_{tot}$\;
+  \For{$i = 0$ \KwTo N-1}{
+		$NextSum \longleftarrow Sum * Random()^{\dfrac{1}{(n-i)}}$\;
+		$UTask \longleftarrow Sum - NextSum $\;
+		$T \longleftarrow Random()$\;
+		$C \longleftarrow T * UTask $\;
+		$D \longleftarrow T * Random(0.75 , 1)$\;
+		$tache \longleftarrow CreerTache(C,D,T)$\;
+		$\Gamma \longleftarrow \Gamma \cup tache$\;
+		$Sum \longleftarrow NextSum$\;
+	}
+	$T \longleftarrow Random()$\;
+	$C \longleftarrow T * Sum $\;
+	$D \longleftarrow T * Random(0.75 , 1)$\;
+	$tache \longleftarrow CreerTache(C,D,T)$\;
+	$\Gamma \longleftarrow \Gamma \cup tache$\;
+ }
+ \caption{Generation de taches}
+\end{algorithm}
+\end{center}

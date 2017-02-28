@@ -1,0 +1,167 @@
+\section{Experimentation}
+\paragraph{}
+Nous avons pris des groupe de taskset harmonique de diffèrent taux d’utilisation allant de 0.1 à 0.8 on y a insérer des taches d’endormissement selon l’algorithme présenter ci-dessus.\\
+Les deux graphes dans les figures \ref{fig:M1} et \ref{fig:M2} représente le minimum, le maximum et la moyenne des taux d’utilisation après insertion du différent groupe.
+On remarque que après insertion des taches d’endormissements, plus le taux d’utilisation de départ est faible plus le taux d’utilisation après insertion est considérable et grand. Donc, on conclut que dans les tasksets de taux d’utilisation faible il y a une perte d’énergie inutile en mode sieste alors qu’on peut gagner de l’énergie en basculant vers le mode sommeil profond.\\
+\begin{figure}[h]
+\begin{center}
+\begin{tikzpicture}[thick, framed]
+\filldraw[fill=blue] (0.7,6.577) rectangle (1.3,7.591);
+	\draw (0.7,7.102) -- (1.3,7.102);
+	\draw (1,6.027) -- (1,6.577);
+	\draw (1,7.584) -- (1,8.558);
+	\draw (0.89,6.027) -- (1.11,6.027) node[anchor=north,fill=white] {0.602};
+	\draw (0.89,8.558) -- (1.11,8.558) node[anchor=south,fill=white] {0.855};
+	\filldraw[fill=red] (1.7,7.134) rectangle (2.3,8.559);
+	\draw (1.7,8.049) -- (2.3,8.049);
+	\draw (2,7.031) -- (2,7.134);
+	\draw (2,8.556) -- (2,9.176);
+	\draw (1.89,7.031) -- (2.11,7.031) node[anchor=north,fill=white] {0.703};
+	\draw (1.89,9.176) -- (2.11,9.176) node[anchor=south,fill=white] {0.917};
+	\filldraw[fill=green] (2.7,8.073) rectangle (3.3,8.662);
+	\draw (2.7,8.544) -- (3.3,8.544);
+	\draw (3,8.018) -- (3,8.073);
+	\draw (3,8.648) -- (3,9.289);
+	\draw (2.89,8.018) -- (3.11,8.018) node[anchor=north,fill=white] {0.801};
+	\draw (2.89,9.289) -- (3.11,9.289) node[anchor=south,fill=white] {0.928};
+	\filldraw[fill=purple] (3.7,8.034) rectangle (4.3,8.583);
+	\draw (3.7,8.537) -- (4.3,8.537);
+	\draw (4,7.029) -- (4,8.034);
+	\draw (4,8.583) -- (4,9.177);
+	\draw (3.89,7.029) -- (4.11,7.029) node[anchor=north,fill=white] {0.702};
+	\draw (3.89,9.177) -- (4.11,9.177) node[anchor=south,fill=white] {0.917};
+	\filldraw[fill=yellow] (4.7,7.093) rectangle (5.3,8.083);
+	\draw (4.7,7.573) -- (5.3,7.573);
+	\draw (5,5.528) -- (5,7.093);
+	\draw (5,8.075) -- (5,9.015);
+	\draw (4.89,5.528) -- (5.11,5.528) node[anchor=north,fill=white] {0.552};
+	\draw (4.89,9.015) -- (5.11,9.015) node[anchor=south,fill=white] {0.901};
+	\filldraw[fill=magenta] (5.7,6.558) rectangle (6.3,7.731);
+	\draw (5.7,7.034) -- (6.3,7.034);
+	\draw (6,6.523) -- (6,6.558);
+	\draw (6,7.642) -- (6,8.776);
+	\draw (5.89,6.523) -- (6.11,6.523) node[anchor=north,fill=white] {0.652};
+	\draw (5.89,8.776) -- (6.11,8.776) node[anchor=south,fill=white] {0.877};
+	\filldraw[fill=cyan] (6.7,7.541) rectangle (7.3,7.644);
+	\draw (6.7,7.559) -- (7.3,7.559);
+	\draw (7,7.521) -- (7,7.541);
+	\draw (7,7.621) -- (7,9.074);
+	\draw (6.89,7.521) -- (7.11,7.521) node[anchor=north,fill=white] {0.752};
+	\draw (6.89,9.074) -- (7.11,9.074) node[anchor=south,fill=white] {0.907};
+	\filldraw[fill=white] (7.7,8.554) rectangle (8.3,8.606);
+	\draw (7.7,8.576) -- (8.3,8.576);
+	\draw (8,8.523) -- (8,8.554);
+	\draw (8,8.605) -- (8,9.044);
+	\draw (7.89,8.523) -- (8.11,8.523) node[anchor=north,fill=white] {0.852};
+	\draw (7.89,9.044) -- (8.11,9.044) node[anchor=south,fill=white] {0.904};
+\draw (0,0) -- coordinate (x axis mid) (10,0);
+\draw (0,0) -- coordinate (y axis mid) (0,10);
+\node[below=0.8cm] at (x axis mid) {Taux utilisation avant insertion};
+\node[rotate=90, above=0.8cm] at (y axis mid) {Taux utilisation apres};
+\draw (0,0) -- (0,-0.3) node[fill=white] {0.0};                                                                                                                                 
+\draw (0,0) -- (-0.5,0) node[fill=white] {0.0};
+\draw (1,0) -- (1,-0.3) node[fill=white] {0.1};                                                                                                                                 
+\draw (0,1) -- (-0.5,1) node[fill=white] {0.1};
+\draw (2,0) -- (2,-0.3) node[fill=white] {0.2};                                                                                                                                 
+\draw (0,2) -- (-0.5,2) node[fill=white] {0.2};
+\draw (3,0) -- (3,-0.3) node[fill=white] {0.3};                                                                                                                                 
+\draw (0,3) -- (-0.5,3) node[fill=white] {0.3};
+\draw (4,0) -- (4,-0.3) node[fill=white] {0.4};                                                                                                                                 
+\draw (0,4) -- (-0.5,4) node[fill=white] {0.4};
+\draw (5,0) -- (5,-0.3) node[fill=white] {0.5};                                                                                                                                 
+\draw (0,5) -- (-0.5,5) node[fill=white] {0.5};
+\draw (6,0) -- (6,-0.3) node[fill=white] {0.6};                                                                                                                                 
+\draw (0,6) -- (-0.5,6) node[fill=white] {0.6};
+\draw (7,0) -- (7,-0.3) node[fill=white] {0.7};                                                                                                                                 
+\draw (0,7) -- (-0.5,7) node[fill=white] {0.7};
+\draw (8,0) -- (8,-0.3) node[fill=white] {0.8};                                                                                                                                 
+\draw (0,8) -- (-0.5,8) node[fill=white] {0.8};
+\draw (9,0) -- (9,-0.3) node[fill=white] {0.9};                                                                                                                                 
+\draw (0,9) -- (-0.5,9) node[fill=white] {0.9};
+\draw (10,0) -- (10,-0.3) node[fill=white] {1.0};                                                                                                                                 
+\draw (0,10) -- (-0.5,10) node[fill=white] {1.0};
+\end{tikzpicture}
+\caption{Taux d'utilisation d'ensembles de taches harmoniques} \label{fig:M1}
+\end{center}
+\end{figure}
+\begin{figure}[h]
+\begin{center}
+\begin{tikzpicture}[thick, framed]
+	\filldraw[fill=blue] (0.7,6.507) rectangle (1.3,7.959);
+	\draw (0.7,7.170) -- (1.3,7.170);
+	\draw (1,5.868) -- (1,6.507);
+	\draw (1,7.891) -- (1,8.502);
+	\draw (0.89,5.868) -- (1.11,5.868) node[anchor=north,fill=white] {0.586};
+	\draw (0.89,8.502) -- (1.11,8.502) node[anchor=south,fill=white] {0.850};
+	\filldraw[fill=red] (1.7,7.418) rectangle (2.3,8.734);
+	\draw (1.7,7.897) -- (2.3,7.897);
+	\draw (2,6.526) -- (2,7.418);
+	\draw (2,8.671) -- (2,9.261);
+	\draw (1.89,6.526) -- (2.11,6.526) node[anchor=north,fill=white] {0.652};
+	\draw (1.89,9.261) -- (2.11,9.261) node[anchor=south,fill=white] {0.926};
+	\filldraw[fill=green] (2.7,7.972) rectangle (3.3,8.703);
+	\draw (2.7,8.325) -- (3.3,8.325);
+	\draw (3,7.144) -- (3,7.972);
+	\draw (3,8.652) -- (3,9.130);
+	\draw (2.89,7.144) -- (3.11,7.144) node[anchor=north,fill=white] {0.714};
+	\draw (2.89,9.130) -- (3.11,9.130) node[anchor=south,fill=white] {0.913};
+	\filldraw[fill=purple] (3.7,7.876) rectangle (4.3,8.524);
+	\draw (3.7,8.171) -- (4.3,8.171);
+	\draw (4,6.782) -- (4,7.876);
+	\draw (4,8.515) -- (4,9.264);
+	\draw (3.89,6.782) -- (4.11,6.782) node[anchor=north,fill=white] {0.678};
+	\draw (3.89,9.264) -- (4.11,9.264) node[anchor=south,fill=white] {0.926};
+	\filldraw[fill=yellow] (4.7,7.413) rectangle (5.3,8.271);
+	\draw (4.7,7.775) -- (5.3,7.775);
+	\draw (5,6.489) -- (5,7.413);
+	\draw (5,8.240) -- (5,8.973);
+	\draw (4.89,6.489) -- (5.11,6.489) node[anchor=north,fill=white] {0.648};
+	\draw (4.89,8.973) -- (5.11,8.973) node[anchor=south,fill=white] {0.897};
+	\filldraw[fill=magenta] (5.7,7.004) rectangle (6.3,8.098);
+	\draw (5.7,7.624) -- (6.3,7.624);
+	\draw (6,6.117) -- (6,7.004);
+	\draw (6,8.055) -- (6,9.117);
+	\draw (5.89,6.117) -- (6.11,6.117) node[anchor=north,fill=white] {0.611};
+	\draw (5.89,9.117) -- (6.11,9.117) node[anchor=south,fill=white] {0.911};
+	\filldraw[fill=cyan] (6.7,7.183) rectangle (7.3,7.930);
+	\draw (6.7,7.546) -- (7.3,7.546);
+	\draw (7,7.057) -- (7,7.183);
+	\draw (7,7.900) -- (7,8.771);
+	\draw (6.89,7.057) -- (7.11,7.057) node[anchor=north,fill=white] {0.705};
+	\draw (6.89,8.771) -- (7.11,8.771) node[anchor=south,fill=white] {0.877};
+	\filldraw[fill=white] (7.7,8.121) rectangle (8.3,8.370);
+	\draw (7.7,8.170) -- (8.3,8.170);
+	\draw (8,8.051) -- (8,8.121);
+	\draw (8,8.356) -- (8,8.961);
+	\draw (7.89,8.051) -- (8.11,8.051) node[anchor=north,fill=white] {0.805};
+	\draw (7.89,8.961) -- (8.11,8.961) node[anchor=south,fill=white] {0.896};
+\draw (0,0) -- coordinate (x axis mid) (10,0);
+\draw (0,0) -- coordinate (y axis mid) (0,10);
+\node[below=0.8cm] at (x axis mid) {Taux utilisation avant insertion};
+\node[rotate=90, above=0.8cm] at (y axis mid) {Taux utilisation apres};
+\draw (0,0) -- (0,-0.3) node[fill=white] {0.0};                                                                                                                                 
+\draw (0,0) -- (-0.5,0) node[fill=white] {0.0};
+\draw (1,0) -- (1,-0.3) node[fill=white] {0.1};                                                                                                                                 
+\draw (0,1) -- (-0.5,1) node[fill=white] {0.1};
+\draw (2,0) -- (2,-0.3) node[fill=white] {0.2};                                                                                                                                 
+\draw (0,2) -- (-0.5,2) node[fill=white] {0.2};
+\draw (3,0) -- (3,-0.3) node[fill=white] {0.3};                                                                                                                                 
+\draw (0,3) -- (-0.5,3) node[fill=white] {0.3};
+\draw (4,0) -- (4,-0.3) node[fill=white] {0.4};                                                                                                                                 
+\draw (0,4) -- (-0.5,4) node[fill=white] {0.4};
+\draw (5,0) -- (5,-0.3) node[fill=white] {0.5};                                                                                                                                 
+\draw (0,5) -- (-0.5,5) node[fill=white] {0.5};
+\draw (6,0) -- (6,-0.3) node[fill=white] {0.6};                                                                                                                                 
+\draw (0,6) -- (-0.5,6) node[fill=white] {0.6};
+\draw (7,0) -- (7,-0.3) node[fill=white] {0.7};                                                                                                                                 
+\draw (0,7) -- (-0.5,7) node[fill=white] {0.7};
+\draw (8,0) -- (8,-0.3) node[fill=white] {0.8};                                                                                                                                 
+\draw (0,8) -- (-0.5,8) node[fill=white] {0.8};
+\draw (9,0) -- (9,-0.3) node[fill=white] {0.9};                                                                                                                                 
+\draw (0,9) -- (-0.5,9) node[fill=white] {0.9};
+\draw (10,0) -- (10,-0.3) node[fill=white] {1.0};                                                                                                                                 
+\draw (0,10) -- (-0.5,10) node[fill=white] {1.0};
+\end{tikzpicture}
+\caption{Taux d'utilisation d'ensembles de taches non harmoniques} \label{fig:M2}
+\end{center}
+\end{figure}
